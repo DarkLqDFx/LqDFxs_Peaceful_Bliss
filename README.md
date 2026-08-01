@@ -1,3 +1,4 @@
+# README.md
 
 Installation information
 =======
@@ -23,3 +24,7 @@ Additional Resources:
 ==========
 Community Documentation: https://docs.neoforged.net/  
 NeoForged Discord: https://discord.neoforged.net/
+
+Bug Fixes:
+==========
+- Fixed issue where mobs would not retaliate against attackers. Previously, if mob A damaged mob B, mob B would target mob A but mob A would not switch its target to mob B. Mobs now correctly fight each other when attacked.
