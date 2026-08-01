@@ -1,0 +1,26 @@
+package work.lqdfxnet.lqdfxspeacefulbliss.Utility;
+
+
+import net.minecraft.world.entity.Mob;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+
+@EventBusSubscriber
+public class MobHostilityInvalidator {
+
+    @SubscribeEvent
+    public static void onMobDeath(LivingDeathEvent event) {
+        if (event.getEntity() instanceof Mob mob) {
+            MobHostilityCache.invalidate(mob);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMobUnload(EntityLeaveLevelEvent event) {
+        if (event.getEntity() instanceof Mob mob) {
+            MobHostilityCache.invalidate(mob);
+        }
+    }
+}

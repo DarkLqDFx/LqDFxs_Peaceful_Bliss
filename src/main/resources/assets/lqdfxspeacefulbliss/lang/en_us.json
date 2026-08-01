@@ -1,0 +1,13 @@
+{
+  "itemGroup.lqdfxspeacefulbliss": "Example Mod Tab",
+  "block.lqdfxspeacefulbliss.example_block": "Example Block",
+  "item.lqdfxspeacefulbliss.example_item": "Example Item",
+
+  "lqdfxspeacefulbliss.configuration.title": "LqDFx's Peaceful Bliss Configs",
+  "lqdfxspeacefulbliss.configuration.section.lqdfxspeacefulbliss.common.toml": "LqDFx's Peaceful Bliss Configs",
+  "lqdfxspeacefulbliss.configuration.section.lqdfxspeacefulbliss.common.toml.title": "LqDFx's Peaceful Bliss Configs",
+  "lqdfxspeacefulbliss.configuration.items": "Item List",
+  "lqdfxspeacefulbliss.configuration.logDirtBlock": "Log Dirt Block",
+  "lqdfxspeacefulbliss.configuration.magicNumberIntroduction": "Magic Number Text",
+  "lqdfxspeacefulbliss.configuration.magicNumber": "Magic Number"
+}
