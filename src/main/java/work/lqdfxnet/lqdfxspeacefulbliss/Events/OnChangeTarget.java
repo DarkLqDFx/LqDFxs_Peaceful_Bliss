@@ -16,7 +16,9 @@ public class OnChangeTarget {
 
     @SubscribeEvent
     public static void onChangeTargetEvent(LivingChangeTargetEvent event) {
+
         Entity newTarget = event.getNewAboutToBeSetTarget();
+        int aggression;
         if (!(event.getEntity() instanceof Mob mob)) return;
         if (!(newTarget instanceof LivingEntity target)) return;
 
@@ -26,6 +28,9 @@ public class OnChangeTarget {
         if (override != null) {
             if (!override) {
                 event.setNewAboutToBeSetTarget(null);
+                return;
+            } else {
+                event.setNewAboutToBeSetTarget(target);
                 return;
             }
             // Forced hostile → skip natural hostility check
@@ -37,7 +42,7 @@ public class OnChangeTarget {
             }
         }
 
-        int aggression = getAggression(mob, target);
+        aggression = getAggression(mob, target);
         boolean canAttack = aggression == 1;
 
         event.setNewAboutToBeSetTarget(canAttack ? target : null);

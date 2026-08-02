@@ -13,49 +13,54 @@ import java.util.List;
 public class Config {
 
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-    public static final ModConfigSpec SPEC = BUILDER.build();
+
     // Pacifier
     public static ModConfigSpec.BooleanValue pacifierEnabled;
-    public static ModConfigSpec.ConfigValue<List<? extends String>> pacifierExcludeBoss;
-    public static ModConfigSpec.ConfigValue<List<? extends String>> pacifierExcludeMonster;
-    public static ModConfigSpec.ConfigValue<List<? extends String>> pacifierExcludeAnimal;
-    public static ModConfigSpec.BooleanValue pacifierInNether;
-    public static ModConfigSpec.BooleanValue pacifierInEnd;
+    public static ModConfigSpec.BooleanValue no_surface_spawns;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> exclude_bosses;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> exclude_monsters;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> exclude_animals;
+    public static ModConfigSpec.BooleanValue peaceful_nether;
+    public static ModConfigSpec.BooleanValue peaceful_end;
 
     static {
 
         // -------------------------------------------------
         // Pacifier
         // -------------------------------------------------
-        BUILDER.comment("Pacifier system settings").push("Pacifier");
+        BUILDER.comment("Peaceful Bliss").push("peacefulbliss");
 
         pacifierEnabled = BUILDER
                 .comment("Enable or disable the pacifier system")
-                .define("pacifier_enabled", true);
+                .define("peacefulbliss_enabled", true);
 
-        pacifierExcludeBoss = BUILDER
+        no_surface_spawns = BUILDER
+                .comment("Turn off surface spawning of Skeletons and Zombies")
+                .define("no_surface_spawns", false);
+
+        exclude_bosses = BUILDER
                 .comment("Boss mobs excluded from pacification")
-                .defineListAllowEmpty("pacifier_exclude_boss",
+                .defineListAllowEmpty("exclude_boss",
                         List.of("minecraft:ender_dragon", "minecraft:wither", "minecraft:elder_guardian"), null, Config::validateEntity);
 
-        pacifierExcludeMonster = BUILDER
+        exclude_monsters = BUILDER
                 .comment("Monster mobs excluded from pacification")
-                .defineListAllowEmpty("pacifier_exclude_monster",
+                .defineListAllowEmpty("exclude_monster",
                         List.of("minecraft:enderman", "minecraft:pillager", "minecraft:vindicator",
                                 "minecraft:evoker", "minecraft:ravager", "minecraft:witch"), null, Config::validateEntity);
 
-        pacifierExcludeAnimal = BUILDER
+        exclude_animals = BUILDER
                 .comment("Animal mobs excluded from pacification")
-                .defineListAllowEmpty("pacifier_exclude_animal",
-                        List.of("minecraft:cow"), null, Config::validateEntity);
+                .defineListAllowEmpty("exclude_animal",
+                        List.of("minecraft:wolf"), null, Config::validateEntity);
 
-        pacifierInNether = BUILDER
+        peaceful_nether = BUILDER
                 .comment("Allow pacifier system in the Nether")
-                .define("pacifier_in_nether", false);
+                .define("in_nether", false);
 
-        pacifierInEnd = BUILDER
+        peaceful_end = BUILDER
                 .comment("Allow pacifier system in the End")
-                .define("pacifier_in_end", false);
+                .define("in_end", false);
 
         BUILDER.pop();
     }
@@ -63,4 +68,6 @@ public class Config {
     private static boolean validateEntity(final Object obj) {
         return obj instanceof String entityName && BuiltInRegistries.ENTITY_TYPE.containsKey(Identifier.parse(entityName));
     }
+
+    public static final ModConfigSpec SPEC = BUILDER.build();
 }

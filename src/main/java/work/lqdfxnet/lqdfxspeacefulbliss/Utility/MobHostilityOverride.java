@@ -15,16 +15,16 @@ public class MobHostilityOverride {
         if (id == null) return null;
 
         // Passive override
-        if (Config.pacifierExcludeAnimal.get().contains(id.toString())) {
+        if (Config.exclude_animals.get().contains(id.toString())) {
             return Boolean.FALSE;
         }
 
         // Hostile override
-        if (Config.pacifierExcludeMonster.get().contains(id.toString())) {
+        if (Config.exclude_monsters.get().contains(id.toString())) {
             return Boolean.TRUE;
         }
 
-        if (Config.pacifierExcludeBoss.get().contains(id.toString())) {
+        if (Config.exclude_bosses.get().contains(id.toString())) {
             return Boolean.TRUE;
         }
 
